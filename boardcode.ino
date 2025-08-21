@@ -27,12 +27,6 @@ void loop() {
   float si_conductivity = cs_dist/(cs_area * resistance);
   float unit_conductivity = 10000 * si_conductivity; // Given in µS/cm
   
-  /*
-  float temp_raw = analogRead(A1);
-  float temp_logged = log(((10240000/temp_raw) - 10000));
-  float temp = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * temp_logged * temp_logged))* temp_logged) - 273.15; // Given in degrees Celsius*/
-
-  
   csv_data += String(millis() / 1000) + ',' + String(unit_conductivity) + '\n';
   
   // Code for archiving
@@ -40,4 +34,5 @@ void loop() {
   
   delay(60000);
 }
+
 
