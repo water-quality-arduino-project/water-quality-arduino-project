@@ -2,10 +2,9 @@
 
 volatile int flow_input;
 
-String csv_data = "Timestamp,Conductivityn";
+String csv_data = "Timestamp,Conductivity\n";
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
   Serial.println("Serial begins.");
   pinMode(11, OUTPUT);
@@ -28,10 +27,10 @@ void loop() {
   float si_conductivity = cs_dist/(cs_area * resistance);
   float unit_conductivity = 10000 * si_conductivity; // Given in µS/cm
   
-  // These three lines are adapted from the XC4494 manual: https://www.jaycar.co.nz/duinotech-arduino-compatible-temperature-sensor-module/p/XC4494
+  /*
   float temp_raw = analogRead(A1);
   float temp_logged = log(((10240000/temp_raw) - 10000));
-  float temp = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * temp_logged * temp_logged))* temp_logged) - 273.15; // Given in degrees Celsius
+  float temp = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * temp_logged * temp_logged))* temp_logged) - 273.15; // Given in degrees Celsius*/
 
   
   csv_data += String(millis() / 1000) + ',' + String(unit_conductivity) + '\n';
@@ -41,3 +40,4 @@ void loop() {
   
   delay(60000);
 }
+
