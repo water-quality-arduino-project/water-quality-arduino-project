@@ -7,6 +7,7 @@ String csv_data = "Timestamp,Conductivity\n";
 void setup() {
   Serial.begin(9600);
   Serial.println("Serial begins.");
+  pinMode(7, INPUT_PULLUP);
   pinMode(11, OUTPUT);
   digitalWrite(11, HIGH);
 }
@@ -32,7 +33,7 @@ void loop() {
   // Code for archiving
   Serial.println(csv_data);
   
-  delay(60000);
+  // Wait until button pressed
+  delay(5000);
+  while (digitalRead(7) == HIGH) {}
 }
-
-
